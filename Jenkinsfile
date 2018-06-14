@@ -28,19 +28,19 @@ pipeline {
             }
         }
 
-      //  stage('Test') {
-       //     steps {
-        //    echo "_____________________________________________________________________________________________________"
-         //   echo "          Test and Publish Junit                                                                     "
-         //   echo "_____________________________________________________________________________________________________"
-         //       sh 'mvn test'
-         //   }
-         //   post {
-         //       always {
-         //           junit 'target/surefire-reports/*.xml'
-         //       }
-         //   }
-        //}
+        stage('Test') {
+            steps {
+                echo "_____________________________________________________________________________________________________"
+                echo "          Test and Publish Junit                                                                     "
+                echo "_____________________________________________________________________________________________________"
+                sh 'mvn test'
+            }    
+                post {
+                    always {
+                    junit 'target/surefire-reports/*.xml'
+                    }
+                }
+        }
 
         stage('TagDeployment'){
             steps{
@@ -51,22 +51,19 @@ pipeline {
                sh "pwd"
                echo "${APPNAME}"
                 sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
-
-
-
-             
-
-               
+                APPTAGGED="NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
             }
-    }
+        }
 
-        //stage('Deploy') {
-          //  steps {
-           // echo "___________________________________________________________________________________________________"
-           // echo "          Deploy Package                                                           "
-           // echo "___________________________________________________________________________________________________"
-           //    sh './jenkins/scripts/deliver.sh'
-            //}
-       // }
+        stage('Deploy') {
+            steps {
+            echo "___________________________________________________________________________________________________"
+            echo "          Deploy Package                                                           "
+            echo "___________________________________________________________________________________________________"
+               sh "mkdir -p /tmp/deply"
+               sh "cp ./target/${APPTAGGED} /tmp/deploy"
+               sh "java -jar /tmp/deploy/${APPTAGGED}"
+            }
+        }
     }
 }
