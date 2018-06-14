@@ -48,8 +48,9 @@ pipeline {
             echo "___________________________________________________________________________________________________"
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
-               echo ${env.POM_ARTIFACTID}
-               
+               pom =readMavenPom file: 'pom.xml'
+               echo pom.version
+
                
             }
     }
