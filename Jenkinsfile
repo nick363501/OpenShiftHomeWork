@@ -13,9 +13,6 @@ pipeline {
                 VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
                 APPNAME="NicolaisApp-v.jar"
-                TODAYDATE=`date +"%m_%d_%Y"
-
-                
         }
 
         sh "echo 'version: ${VERSION}'"
