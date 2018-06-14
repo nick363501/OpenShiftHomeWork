@@ -52,9 +52,9 @@ pipeline {
                sh "pwd"
                echo "${APPNAME}"
                sh '''
-                mv ${APPNAME} ${APPNAME}_$BUILD_NUMBER}
+                mv -f "${APPNAME}" "${APPNAME}_$BUILD_NUMBER}"
                 '''
-                
+
 
 
              
