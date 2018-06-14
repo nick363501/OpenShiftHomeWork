@@ -51,7 +51,7 @@ pipeline {
                sh "cd ${WORKSPACE}"
                sh "pwd"
                echo "${APPNAME}"
-                sh "mv -f ./target/${APPNAME} ./target/Help"
+                sh "mv -f ./target/${APPNAME} ./target/${APPNAME}_${BUILDNUMBER}.jar"
 
 
 
@@ -71,5 +71,3 @@ pipeline {
        // }
     }
 }
-
-877 797 5809
