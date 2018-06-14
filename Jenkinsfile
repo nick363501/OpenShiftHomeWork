@@ -62,7 +62,7 @@ pipeline {
             echo "          Deploy Package                                                           "
             echo "___________________________________________________________________________________________________"
                sh "mkdir -p /tmp/deply"
-               sh "cp ./target/${APPTAGGED} /tmp/deploy"
+               sh "cp ./target/${APPTAGGED} /tmp/deploy/${APPTAGGED}"
                sh "java -jar /tmp/deploy/${APPTAGGED}"
             }
         }
