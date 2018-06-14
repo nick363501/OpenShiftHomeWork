@@ -28,6 +28,9 @@ pipeline {
         }
         stage('Test') {
             steps {
+            sh "echo -----------------------------------------------"
+            sh "echo           Run Tests & Post Junit               "
+            sh "echo -----------------------------------------------"
                 sh 'mvn test'
             }
             post {
@@ -36,8 +39,16 @@ pipeline {
                 }
             }
         }
+        stage('TagDeployment')
+            steps{
+               sh 'cd ${WORKSPACE}'
+               sh 'pwd'
+            }
         stage('Deploy') {
             steps {
+            sh "echo -----------------------------------------------"
+            sh "echo           Deploy to Dev                        "
+            sh "echo -----------------------------------------------"
                 sh './jenkins/scripts/deliver.sh'
             }
         }
