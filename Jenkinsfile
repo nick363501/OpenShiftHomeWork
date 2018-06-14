@@ -51,6 +51,7 @@ pipeline {
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
                echo "${APPNAME}"
+               sh "echo ${APPNAME} "Nicolais_App_${BUILDNUMBER}.jar""
 
 
              
