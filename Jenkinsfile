@@ -82,7 +82,7 @@ pipeline {
          //       protocol: NEXUS_PROTO,
          //       repository: NEXUS_REPOSITORY,
          //       version: VERSION
-         //   }
+         }
         }
 
         stage('Deploy') 
