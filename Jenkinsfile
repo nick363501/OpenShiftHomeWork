@@ -50,8 +50,9 @@ pipeline {
             echo "___________________________________________________________________________________________________"
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
-               echo "${APPNAME}"
+               APPNAME_TAG="${APPNAME}" + "_" + "${BUILD_NUMBER}"
                
+
              
 
                
