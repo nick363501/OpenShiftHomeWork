@@ -12,8 +12,8 @@ pipeline {
                 script {
                 VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
-                APPNAME="NicolaisApp-v"
-                APPNAME_TAG="${APPNAME}" + "_" + "${BUILD_NUMBER}"
+                APPNAME="NicolaisApp-v.jar"
+                
         }
 
         sh "echo 'version: ${VERSION}'"
@@ -50,8 +50,8 @@ pipeline {
             echo "___________________________________________________________________________________________________"
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
-               APPNAME_TAG="${APPNAME}" + "_" + "${BUILD_NUMBER}"
-               
+               echo "${APPNAME}"
+
 
              
 
