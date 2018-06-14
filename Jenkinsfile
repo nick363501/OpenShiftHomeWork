@@ -51,7 +51,10 @@ pipeline {
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
                echo "${APPNAME}"
-               sh "echo ${APPNAME} "Nicolais_App_${BUILDNUMBER}.jar""
+               sh '''
+                mv ${APPNAME} ${APPNAME}_$BUILD_NUMBER}
+                '''
+                
 
 
              
@@ -70,3 +73,5 @@ pipeline {
        // }
     }
 }
+
+877 797 5809
