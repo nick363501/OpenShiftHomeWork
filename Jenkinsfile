@@ -41,8 +41,8 @@ pipeline {
         }
         stage('TagDeployment')
             steps{
-               sh 'cd ${WORKSPACE}'
-               sh 'pwd'
+               sh cd ${WORKSPACE}""
+               sh "pwd"
             }
         stage('Deploy') {
             steps {
