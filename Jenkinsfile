@@ -49,10 +49,9 @@ pipeline {
             echo "             Tag & Rename OpenShift Deployment                                              "
             echo "___________________________________________________________________________________________________"
                sh "cd ${WORKSPACE}"
-               sh "cd target"
                sh "pwd"
                echo "${APPNAME}"
-                sh "mv -f ${APPNAME} Help"
+                sh "mv -f ./target/${APPNAME} ./target/Help"
 
 
 
