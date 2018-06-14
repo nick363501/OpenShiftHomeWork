@@ -13,6 +13,7 @@ pipeline {
                 VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
                 APPNAME="NicolaisApp-v.jar"
+                APPTAGGED="NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
         }
 
         sh "echo 'version: ${VERSION}'"
@@ -51,7 +52,7 @@ pipeline {
                sh "pwd"
                echo "${APPNAME}"
                 sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
-                APPTAGGED="NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
+                
             }
         }
 
