@@ -30,9 +30,7 @@ pipeline {
                 DEPLOY_COMP_NAME = 'Nicolais_HomeWork_App'
 
                 //POM
-                def groupId    = getGroupIdFromPom("pom.xml")
-                def artifactId = getArtifactIdFromPom("pom.xml")
-                def version    = getVersionFromPom("pom.xml")
+
 
         }
 
