@@ -48,8 +48,7 @@ pipeline {
             echo "___________________________________________________________________________________________________"
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
-               echo ${POM_ARTIFACTID}
-               echo '${POM_ARTIFACTID}'
+               sh 'echo ${POM_ARTIFACTID}'
             }
     }
 
