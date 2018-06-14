@@ -39,11 +39,12 @@ pipeline {
                 }
             }
         }
-        stage('TagDeployment')
+        stage('TagDeployment'){
             steps{
                sh cd ${WORKSPACE}""
                sh "pwd"
             }
+    }
         stage('Deploy') {
             steps {
             sh "echo -----------------------------------------------"
