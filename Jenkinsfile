@@ -50,7 +50,8 @@ pipeline {
             echo "___________________________________________________________________________________________________"
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
-               sh "mv ${APPNAME} ${APPNAMETAG}
+               echo "${APPNAME}"
+               
              
 
                
