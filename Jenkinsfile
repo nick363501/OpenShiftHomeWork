@@ -20,17 +20,14 @@ pipeline {
     }
         stage('Build') {
             steps {
-            sh "echo -----------------------------------------------"
-            sh "echo           Build Jar File                         "
-            sh "echo -----------------------------------------------"
+            echo "-----------------------------------------------"
+            echo "          Build Jar File                        "
+            echo "-----------------------------------------------"
             sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-            sh "echo -----------------------------------------------"
-            sh "echo           Run Tests & Post Junit               "
-            sh "echo -----------------------------------------------"
                 sh 'mvn test'
             }
             post {
@@ -47,10 +44,7 @@ pipeline {
     }
         stage('Deploy') {
             steps {
-            sh "echo -----------------------------------------------"
-            sh "echo           Deploy to Dev                        "
-            sh "echo -----------------------------------------------"
-                sh './jenkins/scripts/deliver.sh'
+               sh './jenkins/scripts/deliver.sh'
             }
         }
     }
