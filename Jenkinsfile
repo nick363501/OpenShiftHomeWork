@@ -10,7 +10,7 @@ pipeline {
         stage( "Set up Environment Variables" ) {
             steps{
                 script {
-                VERSION = "${BUILD_TIMESTAMP}_${BUILD_NUMBER}"
+                VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
         }
 
