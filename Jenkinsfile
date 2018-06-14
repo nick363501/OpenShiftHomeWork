@@ -13,7 +13,7 @@ pipeline {
                 VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
                 APPNAME="NicolaisApp-v"
-                APPNAMETAG="${APPNAME}_${BUILD_NUMBER}"
+                APPNAME_TAG="${APPNAME}" + "_" + "${BUILD_NUMBER}"
         }
 
         sh "echo 'version: ${VERSION}'"
