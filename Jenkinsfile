@@ -51,7 +51,7 @@ pipeline {
                sh "cd ${WORKSPACE}"
                sh "pwd"
                echo "${APPNAME}"
-                sh "mv -f ./target/${APPNAME} ./target/${APPNAME}_${BUILDNUMBER}.jar"
+                sh "mv -f ./target/${APPNAME} ./target/${APPNAME}_${BUILD_NUMBER}.jar"
 
 
 
