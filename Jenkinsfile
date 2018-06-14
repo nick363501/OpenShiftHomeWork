@@ -16,7 +16,7 @@ pipeline {
                 APP_TAGGED="NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
                 DEPLOY_DIR="/tmp/deploy"
                 NEXUS_PROTO = "http"
-                NEXUS_HOST = "http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com"
+                NEXUS_HOST = "http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com/repository"
                 NEXUS_PORT = "80"
 
                     // job specificstag
@@ -28,6 +28,12 @@ pipeline {
                 DEPLOY_APP_NAME = 'Nicolais_HomeWork'
                 DEPLOY_APP_PROCESS = 'Deploy'
                 DEPLOY_COMP_NAME = 'Nicolais_HomeWork_App'
+
+                //POM
+                def groupId    = getGroupIdFromPom("pom.xml")
+                def artifactId = getArtifactIdFromPom("pom.xml")
+                def version    = getVersionFromPom("pom.xml")
+
         }
 
         sh "echo 'version: ${VERSION}'"
@@ -75,14 +81,14 @@ pipeline {
             steps
             {   
                 echo "Will add steps Later"
-         //     nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "build/libs/${ARTIFACT_FILENAME}", type: 'jar']],
-         //       credentialsId: NEXUS_CREDSID,
-         //       groupId: NEXUS_GROUP,
-         //       nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
-         //       nexusVersion: 'nexus3',
-         //       protocol: NEXUS_PROTO,
-         //       repository: NEXUS_REPOSITORY,
-         //       version: VERSION
+            //    nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "build/libs/${ARTIFACT_FILENAME}", type: 'jar']],
+            //    credentialsId: NEXUS_CREDSID,
+            //    groupId: NEXUS_GROUP,
+            //    nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
+            //   nexusVersion: 'nexus3',
+            //    protocol: NEXUS_PROTO,
+            //    repository: NEXUS_REPOSITORY,
+            //    version: VERSION
          }
         }
 
