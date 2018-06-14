@@ -13,6 +13,8 @@ pipeline {
                 VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
                 APPNAME="NicolaisApp-v.jar"
+                TODAYDATE=`date +"%m_%d_%Y"''
+
                 
         }
 
@@ -51,7 +53,7 @@ pipeline {
                sh "cd ${WORKSPACE}"
                sh "pwd"
                echo "${APPNAME}"
-                sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v${BUILD_NUMBER}.jar"
+                sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v_${TODAYDATE}_${BUILD_NUMBER}.jar"
 
 
 
