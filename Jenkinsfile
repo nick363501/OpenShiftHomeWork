@@ -27,19 +27,19 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-            echo "_____________________________________________________________________________________________________"
-            echo "          Test and Publish Junit                                                                     "
-            echo "_____________________________________________________________________________________________________"
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
+      //  stage('Test') {
+       //     steps {
+        //    echo "_____________________________________________________________________________________________________"
+         //   echo "          Test and Publish Junit                                                                     "
+         //   echo "_____________________________________________________________________________________________________"
+         //       sh 'mvn test'
+         //   }
+         //   post {
+         //       always {
+         //           junit 'target/surefire-reports/*.xml'
+         //       }
+         //   }
+        //}
 
         stage('TagDeployment'){
             steps{
@@ -48,7 +48,7 @@ pipeline {
             echo "___________________________________________________________________________________________________"
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
-               sh 'echo ${POM_ARTIFACTID}'
+               sh "echo ${POM_ARTIFACTID}"
             }
     }
 
