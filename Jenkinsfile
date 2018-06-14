@@ -70,7 +70,7 @@ pipeline {
             }
         }
 
-        stage{'NEXUS'}
+        stage('NEXUS')
         {
             steps
             {   
