@@ -30,9 +30,8 @@ pipeline {
         stage('Test') {
             steps {
             echo "-----------------------------------------------------------------------------------"
-            echo "          Test and Publish Junit               "
+            echo "          Test and Publish Junit                                                   "
             echo "-----------------------------------------------------------------------------------"
-
                 sh 'mvn test'
             }
             post {
@@ -45,7 +44,7 @@ pipeline {
         stage('TagDeployment'){
             steps{
             echo "-----------------------------------------------------------------------------------"
-            echo "             Tag OpenShift Deployment                    "
+            echo "             Tag OpenShift Deployment                                              "
             echo "-----------------------------------------------------------------------------------"
                sh "cd ${WORKSPACE}"
                sh "pwd"
@@ -55,7 +54,7 @@ pipeline {
         stage('Deploy') {
             steps {
             echo "-----------------------------------------------------------------------------------"
-            echo "          Deploy Package                       "
+            echo "          Deploy Package                                                           "
             echo "-----------------------------------------------------------------------------------"
                sh './jenkins/scripts/deliver.sh'
             }
