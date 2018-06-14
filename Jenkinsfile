@@ -12,6 +12,7 @@ pipeline {
                 script {
                 VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
+                APPNAME="NicolaisApp_v"
         }
 
         sh "echo 'version: ${VERSION}'"
@@ -48,8 +49,8 @@ pipeline {
             echo "___________________________________________________________________________________________________"
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
-               pom =readMavenPom file: 'pom.xml'
-               echo pom.version
+             //  sh "mv ${APPNAME}_$(BUILD_N"
+             
 
                
             }
