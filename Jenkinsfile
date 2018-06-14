@@ -16,7 +16,6 @@ pipeline {
 
         sh "echo 'version: ${VERSION}'"
         sh "echo 'version_tag: ${VERSION_TAG}'"
-        sh "echo 'articat_filename: ${ARTIFACT_FILENAME}'"
       }
     }
         stage('Build') {
