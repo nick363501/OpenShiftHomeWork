@@ -12,7 +12,7 @@ pipeline {
                 script {
                 VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
-                APPNAME="NicolaisApp-v"
+                APPNAME="NicolaisApp-v.jar"
                 
         }
 
@@ -51,7 +51,7 @@ pipeline {
                sh "cd ${WORKSPACE}"
                sh "pwd"
                echo "${APPNAME}"
-                sh "mv -f ./target/${APPNAME} ./target/${APPNAME}_${BUILD_NUMBER}.jar"
+                sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v${BUILD_NUMBER}.jar"
 
 
 
