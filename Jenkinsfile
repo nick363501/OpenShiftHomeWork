@@ -12,7 +12,7 @@ pipeline {
                 script {
                 VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
-                APPNAME="NicolaisApp-v.jar"
+                APPNAME="NicolaisApp-v"
                 
         }
 
