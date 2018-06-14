@@ -15,6 +15,19 @@ pipeline {
                 APPNAME="NicolaisApp-v.jar"
                 APP_TAGGED="NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
                 DEPLOY_DIR="/tmp/deploy"
+                NEXUS_PROTO = "http"
+                NEXUS_HOST = "http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com"
+                NEXUS_PORT = "80"
+
+                    // job specificstag
+                GIT_REPO = 'GIT PROJECT URL'
+                NEXUS_CREDSID = 'NEXUS'
+                NEXUS_REPOSITORY = 'Nicolais_Applications'
+                NEXUS_GROUP = ''
+                DEPLOY_ENV_TARGET = 'DEV'
+                DEPLOY_APP_NAME = 'Nicolais_HomeWork'
+                DEPLOY_APP_PROCESS = 'Deploy'
+                DEPLOY_COMP_NAME = 'Nicolais_HomeWork_App'
         }
 
         sh "echo 'version: ${VERSION}'"
@@ -45,7 +58,7 @@ pipeline {
         }
 
         stage('TagDeployment'){
-            steps{
+            steps{      
             echo "___________________________________________________________________________________________________"
             echo "             Tag & Rename OpenShift Deployment                                              "
             echo "___________________________________________________________________________________________________"
@@ -57,7 +70,23 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage{'NEXUS'}
+        {
+            steps
+            {   
+         //     nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "build/libs/${ARTIFACT_FILENAME}", type: 'jar']],
+         //       credentialsId: NEXUS_CREDSID,
+         //       groupId: NEXUS_GROUP,
+         //       nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
+         //       nexusVersion: 'nexus3',
+         //       protocol: NEXUS_PROTO,
+         //       repository: NEXUS_REPOSITORY,
+         //       version: VERSION
+         //   }
+        }
+
+        stage('Deploy') 
+        {
             steps {
             echo "___________________________________________________________________________________________________"
             echo "          Deploy Package                                                           "
