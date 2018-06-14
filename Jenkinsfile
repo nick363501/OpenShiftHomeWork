@@ -13,7 +13,8 @@ pipeline {
                 VERSION = "${BUILD_NUMBER}"
                 VERSION_TAG="${VERSION}"
                 APPNAME="NicolaisApp-v.jar"
-                APPTAGGED="NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
+                APP_TAGGED="NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
+                DEPLOY_DIR="/tmp/deploy"
         }
 
         sh "echo 'version: ${VERSION}'"
@@ -61,9 +62,9 @@ pipeline {
             echo "___________________________________________________________________________________________________"
             echo "          Deploy Package                                                           "
             echo "___________________________________________________________________________________________________"
-               sh "mkdir -p /tmp/deply"
-               sh "cp ./target/${APPTAGGED} /tmp/deploy/${APPTAGGED}"
-               sh "java -jar /tmp/deploy/${APPTAGGED}"
+               sh "mkdir -p ${DEPLOY_DIR}"
+               sh "cp ./target/${APP_TAGGED} /tmp/deploy/${APP_TAGGED}"
+               sh "java -jar ${DEPLOY_DIR}/${APP_TAGGED}"
             }
         }
     }
