@@ -51,9 +51,7 @@ pipeline {
                sh "cd ${WORKSPACE}/target"
                sh "pwd"
                echo "${APPNAME}"
-               sh '''
-                mv -f "${APPNAME}" "${APPNAME}_$BUILD_NUMBER}"
-                '''
+                sh "mv -f ${APPNAME} Help"
 
 
 
