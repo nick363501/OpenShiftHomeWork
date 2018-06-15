@@ -19,6 +19,7 @@ pipeline {
                 NEXUS_HOST = "http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com/repository"
                 NEXUS_PORT = "80"
 
+
                     // job specificstag
                 //APP_ID = props['name']
                 GIT_REPO = 'GIT PROJECT URL'
@@ -81,7 +82,8 @@ pipeline {
             steps
             {   
                //sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com/repository/Nicolais_Applications/"
-               nexusArtifactUploader artifacts: [[artifactId: APP_TAGGED, classifier: '', file: "${DEPLOY_DIR}/${APP_TAGGED}", type: 'jar']],
+               sh "cd %{DEPLOY_DIR}"
+               nexusArtifactUploader artifacts: [[artifactId: APPNAME, classifier: '', file: "${DEPLOY_DIR}/${APP_TAGGED}", type: 'jar']],
                credentialsId: NEXUS_CREDSID,
                groupId: NEXUS_GROUP,
                nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
