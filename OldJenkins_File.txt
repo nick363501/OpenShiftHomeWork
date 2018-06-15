@@ -1,0 +1,103 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
+    stages {
+
+        stage( "Set up Environment Variables" ) {
+            steps{
+                script {
+                VERSION = "${BUILD_NUMBER}"
+                VERSION_TAG="${VERSION}"
+                APPNAME="NicolaisApp-v.jar"
+                APP_TAGGED="NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
+                DEPLOY_DIR="/tmp/deploy"
+                NEXUS_PROTO = "http"
+                NEXUS_HOST = "http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com/repository"
+                NEXUS_PORT = "80"
+
+                    // job specificstag
+                GIT_REPO = 'GIT PROJECT URL'
+                NEXUS_CREDSID = 'NEXUS'
+                NEXUS_REPOSITORY = 'Nicolais_Applications'
+                NEXUS_GROUP = ''
+                DEPLOY_ENV_TARGET = 'DEV'
+                DEPLOY_APP_NAME = 'Nicolais_HomeWork'
+                DEPLOY_APP_PROCESS = 'Deploy'
+                DEPLOY_COMP_NAME = 'Nicolais_HomeWork_App'
+
+                //POM
+        }
+
+        sh "echo 'version: ${VERSION}'"
+        sh "echo 'version_tag: ${VERSION_TAG}'"
+      }
+    }
+        stage('Build') {
+            steps {
+            echo "_____________________________________________________________________________________________________"
+            echo "          Build Jar File                                                                             "
+            echo "_____________________________________________________________________________________________________"
+            sh 'mvn -B -DskipTests clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "_____________________________________________________________________________________________________"
+                echo "          Test and Publish Junit                                                                     "
+                echo "_____________________________________________________________________________________________________"
+                sh 'mvn test'
+            }    
+                post {
+                    always {
+                    junit 'target/surefire-reports/*.xml'
+                    }
+                }
+        }
+
+        stage('TagDeployment'){
+            steps{      
+            echo "___________________________________________________________________________________________________"
+            echo "             Tag & Rename OpenShift Deployment                                              "
+            echo "___________________________________________________________________________________________________"
+               sh "cd ${WORKSPACE}"
+               sh "pwd"
+               echo "${APPNAME}"
+                sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
+                
+            }
+        }
+
+        stage('NEXUS')
+        {
+            steps
+            {   
+                echo "Will add steps Later"
+            //    nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "build/libs/${ARTIFACT_FILENAME}", type: 'jar']],
+            //    credentialsId: NEXUS_CREDSID,
+            //    groupId: NEXUS_GROUP,
+            //    nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
+            //   nexusVersion: 'nexus3',
+            //    protocol: NEXUS_PROTO,
+            //    repository: NEXUS_REPOSITORY,
+            //    version: VERSION
+         }
+        }
+
+        stage('Deploy') 
+        {
+            steps {
+            echo "___________________________________________________________________________________________________"
+            echo "          Deploy Package                                                           "
+            echo "___________________________________________________________________________________________________"
+               sh "mkdir -p ${DEPLOY_DIR}"
+               sh "cp ./target/${APP_TAGGED} /tmp/deploy/${APP_TAGGED}"
+               sh "java -jar ${DEPLOY_DIR}/${APP_TAGGED}"
+            }
+        }
+    }
+}
