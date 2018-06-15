@@ -67,6 +67,7 @@ pipeline {
                sh "cd ${WORKSPACE}"
                sh "pwd"
                echo "${APPNAME}"
+                sh "mkdir -p ${DEPLOY_DIR}"
                 sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
                 sh "cp -f ./target/${APP_TAGGED} /tmp/deploy/${APP_TAGGED}"
             }
@@ -93,9 +94,7 @@ pipeline {
             echo "___________________________________________________________________________________________________"
             echo "          Deploy Package                                                           "
             echo "___________________________________________________________________________________________________"
-               sh "mkdir -p ${DEPLOY_DIR}"
-               
-               sh "java -jar ${DEPLOY_DIR}/${APP_TAGGED}"
+            sh "java -jar ${DEPLOY_DIR}/${APP_TAGGED}"
             }
         }
     }
