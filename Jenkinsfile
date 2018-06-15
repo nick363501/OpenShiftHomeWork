@@ -79,7 +79,7 @@ pipeline {
         {
             steps
             {   
-               sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3.nick-nexus.svc:8081/repository/releases"
+               sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com/repository/Nicolais_Applications/"
                //nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "${DEPLOY_DIR}/${APP_TAGGED}", type: 'jar']],
                 //credentialsId: NEXUS_CREDSID,
                // groupId: NEXUS_GROUP,
