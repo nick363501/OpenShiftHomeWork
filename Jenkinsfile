@@ -81,9 +81,13 @@ pipeline {
         {
             steps
             {   
+            echo "___________________________________________________________________________________________________"
+            echo "             Deploy Nexus                                           "
+            echo "___________________________________________________________________________________________________"
                //sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com/repository/Nicolais_Applications/"
                //sh "cd %{DEPLOY_DIR}"
-               nexusArtifactUploader artifacts: [[artifactId: APPNAME, classifier: '', file: "${DEPLOY_DIR}/${APP_TAGGED}", type: 'jar']],
+               sh "pwd"
+               nexusArtifactUploader artifacts: [[artifactId: APPNAME, classifier: '', file: "} /tmp/deploy/${APP_TAGGED}", type: 'jar']],
                credentialsId: NEXUS_CREDSID,
                groupId: NEXUS_GROUP,
                nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
