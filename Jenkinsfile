@@ -89,7 +89,7 @@ pipeline {
                sh "pwd"
                nexusArtifactUploader artifacts:
                [[artifactId: APPNAME, classifier: '', file: "./target/${APP_TAGGED}", type: 'jar']],
-               credentialsId: NEXUS_CREDSID,
+               //credentialsId: NEXUS_CREDSID,
                groupId: NEXUS_GROUP,
                nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
                nexusVersion: 'nexus3',
