@@ -73,7 +73,6 @@ pipeline {
                 sh "mkdir -p ${DEPLOY_DIR}"
                 sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
                 sh "cp -f ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar /tmp/deploy/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
-                sh "cp -f ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar ../"
                 sh "echo ${APP_TAGGED}"
             }
         }
