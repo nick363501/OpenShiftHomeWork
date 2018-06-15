@@ -20,7 +20,7 @@ pipeline {
                 NEXUS_PORT = "80"
 
                     // job specificstag
-                APP_ID = props['name']
+//                APP_ID = props['name']
                 GIT_REPO = 'GIT PROJECT URL'
                 NEXUS_CREDSID = 'NEXUS'
                 NEXUS_REPOSITORY = 'Nicolais_Applications'
