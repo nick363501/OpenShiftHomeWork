@@ -79,15 +79,15 @@ pipeline {
         {
             steps
             {   
-               sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com/repository/Nicolais_Applications/"
-               //nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "${DEPLOY_DIR}/${APP_TAGGED}", type: 'jar']],
-                //credentialsId: NEXUS_CREDSID,
-               // groupId: NEXUS_GROUP,
-               // nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
-               // nexusVersion: 'nexus3',
-               // protocol: NEXUS_PROTO,
-               // repository: NEXUS_REPOSITORY,
-               // version: VERSION
+               //sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com/repository/Nicolais_Applications/"
+               nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "${DEPLOY_DIR}/${APP_TAGGED}", type: 'jar']],
+               credentialsId: NEXUS_CREDSID,
+               groupId: NEXUS_GROUP,
+               nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
+               nexusVersion: 'nexus3',
+               protocol: NEXUS_PROTO,
+               repository: NEXUS_REPOSITORY,
+               version: VERSION
             }
        }
 
