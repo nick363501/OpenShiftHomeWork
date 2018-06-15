@@ -73,6 +73,7 @@ pipeline {
                 sh "mkdir -p ${DEPLOY_DIR}"
                 sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
                 sh "cp -f ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar /tmp/deploy/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
+                sh "cp -f ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar ../"
                 sh "echo ${APP_TAGGED}"
             }
         }
@@ -87,7 +88,8 @@ pipeline {
                //sh "${mvnCmd} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-rn-nexus.apps.na37.openshift.opentlc.com/repository/Nicolais_Applications/"
                //sh "cd %{DEPLOY_DIR}"
                sh "pwd"
-               nexusArtifactUploader artifacts: [[artifactId: APPNAME, classifier: '', file: "} /tmp/deploy/${APP_TAGGED}", type: 'jar']],
+               nexusArtifactUploader artifacts:
+               [[artifactId: APPNAME, classifier: '', file: "./target/${APP_TAGGED}", type: 'jar']],
                credentialsId: NEXUS_CREDSID,
                groupId: NEXUS_GROUP,
                nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
