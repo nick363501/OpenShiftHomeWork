@@ -68,7 +68,7 @@ pipeline {
                sh "pwd"
                echo "${APPNAME}"
                 sh "mv -f ./target/${APPNAME} ./target/NicolaisApp_v_${BUILD_TIMESTAMP}_${BUILD_NUMBER}.jar"
-                
+                sh "cp -f ./target/${APP_TAGGED} /tmp/deploy/${APP_TAGGED}"
             }
         }
 
@@ -76,12 +76,11 @@ pipeline {
         {
             steps
             {   
-                echo "Will add steps Later"
-                nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "build/libs/${ARTIFACT_FILENAME}", type: 'jar']],
+                nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "${DEPLOY_DIR}/${APP_TAGGED}", type: 'jar']],
                 credentialsId: NEXUS_CREDSID,
                 groupId: NEXUS_GROUP,
                 nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
-               nexusVersion: 'nexus3',
+                nexusVersion: 'nexus3',
                 protocol: NEXUS_PROTO,
                 repository: NEXUS_REPOSITORY,
                 version: VERSION
@@ -95,7 +94,7 @@ pipeline {
             echo "          Deploy Package                                                           "
             echo "___________________________________________________________________________________________________"
                sh "mkdir -p ${DEPLOY_DIR}"
-               sh "cp ./target/${APP_TAGGED} /tmp/deploy/${APP_TAGGED}"
+               
                sh "java -jar ${DEPLOY_DIR}/${APP_TAGGED}"
             }
         }
