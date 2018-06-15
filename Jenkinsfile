@@ -30,8 +30,6 @@ pipeline {
                 DEPLOY_COMP_NAME = 'Nicolais_HomeWork_App'
 
                 //POM
-
-
         }
 
         sh "echo 'version: ${VERSION}'"
@@ -79,14 +77,14 @@ pipeline {
             steps
             {   
                 echo "Will add steps Later"
-            //    nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "build/libs/${ARTIFACT_FILENAME}", type: 'jar']],
-            //    credentialsId: NEXUS_CREDSID,
-            //    groupId: NEXUS_GROUP,
-            //    nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
-            //   nexusVersion: 'nexus3',
-            //    protocol: NEXUS_PROTO,
-            //    repository: NEXUS_REPOSITORY,
-            //    version: VERSION
+                nexusArtifactUploader artifacts: [[artifactId: APP_ID, classifier: '', file: "build/libs/${ARTIFACT_FILENAME}", type: 'jar']],
+                credentialsId: NEXUS_CREDSID,
+                groupId: NEXUS_GROUP,
+                nexusUrl: "$NEXUS_HOST:$NEXUS_PORT",
+               nexusVersion: 'nexus3',
+                protocol: NEXUS_PROTO,
+                repository: NEXUS_REPOSITORY,
+                version: VERSION
          }
         }
 
